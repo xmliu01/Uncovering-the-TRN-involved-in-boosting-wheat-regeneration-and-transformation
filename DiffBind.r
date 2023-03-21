@@ -1,0 +1,6 @@
+brary("DiffBind")
+library("tidyverse")
+sample=dba(sampleSheet="sample.info.csv")
+count=dba.count(sample,"reference.peak",score=DBA_SCORE_TMM_READS_EFFECTIVE_CPM,bUseSummarizeOverlaps = TRUE,bParallel=TRUE)
+all=as.data.frame(count$peaks)
+write_tsv(all,"DiffBind.res.txt")

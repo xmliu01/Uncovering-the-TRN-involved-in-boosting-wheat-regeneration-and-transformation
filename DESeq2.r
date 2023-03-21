@@ -1,0 +1,7 @@
+library("DESeq2")
+count=read.csv("count.csv",row.names = 1)
+group=read.csv("group.csv")
+dds=DESeqDataSetFromMatrix(countData = count,colData = group,design = ~ group)
+deg=DESeq(dds)
+res=results(deg)
+write.csv(res,"deg.csv")
